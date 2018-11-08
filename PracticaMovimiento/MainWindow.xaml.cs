@@ -55,12 +55,39 @@ namespace PracticaMovimiento
                         var deltaTime = tiempoActual - tiempoAnterior;
 
                         double leftCarroActual = Canvas.GetLeft(carro);
-                        Canvas.SetLeft(carro, leftCarroActual - (300 * deltaTime.TotalSeconds)) ;
+                        Canvas.SetLeft(carro, leftCarroActual - (20 * deltaTime.TotalSeconds)) ;
                         if(Canvas.GetLeft(carro) <= -100)
                         {
                             Canvas.SetLeft(carro, 800);
                         }
+
+
+                        //Interseccioon en X
+                        double xCarro = Canvas.GetLeft(carro);
+                        double xVaquero = Canvas.GetLeft(imgVaquero);
+                        if (xVaquero + imgVaquero.Width >= xCarro && xVaquero <= xCarro + carro.Width)
+                        {
+                            lblInterseccionX.Text = "Si HAY INTESECCION EN X!!!!";
+                        }
+                        else
+                        {
+                            lblInterseccionX.Text = "No hay interseccion en X";
+                        }
+
+                        //Interseccioon en Y
+                        double yCarro = Canvas.GetTop(carro);
+                        double yVaquero = Canvas.GetTop(imgVaquero);
+                        if (yVaquero + imgVaquero.Height >= yCarro && yVaquero <= yCarro + carro.Height)
+                        {
+                            lblInterseccionY.Text = "Si HAY INTESECCION EN Y!!!!";
+                        }
+                        else
+                        {
+                            lblInterseccionY.Text = "No hay interseccion en Y";
+                        }
+
                         tiempoAnterior = tiempoActual;
+
                     }
                     );
             }
