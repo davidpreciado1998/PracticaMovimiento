@@ -29,6 +29,11 @@ namespace PracticaMovimiento
         enum EstadoJuego { Gameplay, Gameover };
         EstadoJuego estadoActual = EstadoJuego.Gameplay;
 
+        enum Direccion { Arriba, Abajo, Izquierda, Derecha, Ninguna };
+        Direccion direccionJugador = Direccion.Ninguna;
+
+        double velocidadRana=50;
+
         public MainWindow()
         {
 
@@ -47,6 +52,39 @@ namespace PracticaMovimiento
             threadMoverEnemigos.Start();
         }
 
+        void moverJugador(TimeSpan deltaTime)
+        {
+            double topVaqueroActual = Canvas.GetTop(imgVaquero);
+            double leftVaqueroActual = Canvas.GetLeft(imgVaquero);
+            switch (direccionJugador)
+            {
+
+                case Direccion.Arriba:
+                    Canvas.SetTop(imgVaquero, topVaqueroActual - (velocidadRana * deltaTime.TotalSeconds));
+                    break;
+                case Direccion.Abajo:
+                    Canvas.SetTop(imgVaquero, topVaqueroActual + (velocidadRana * deltaTime.TotalSeconds));
+                    break;
+                case Direccion.Izquierda:
+                    if(leftVaqueroActual - (velocidadRana * deltaTime.TotalSeconds) >= 0)
+                    {
+                        Canvas.SetLeft(imgVaquero, leftVaqueroActual - (velocidadRana * deltaTime.TotalSeconds));
+                    }
+                    break;
+                case Direccion.Derecha:
+                    double nuevaPosicion = leftVaqueroActual + (velocidadRana * deltaTime.TotalSeconds);
+                    if(nuevaPosicion + imgVaquero.Width <=800)
+                    {
+                        Canvas.SetLeft(imgVaquero, leftVaqueroActual + (velocidadRana * deltaTime.TotalSeconds));
+                    }
+                    break;
+                case Direccion.Ninguna:
+                    break;
+                default:
+                    break;
+            }
+        }
+
         void actualizar()
         {
             while(true)
@@ -57,9 +95,11 @@ namespace PracticaMovimiento
                         var tiempoActual = stopwatch.Elapsed;
                         var deltaTime = tiempoActual - tiempoAnterior;
 
+                       // velocidadRana += 10 * deltaTime.TotalSeconds;
+
                         if(estadoActual == EstadoJuego.Gameplay)
                         {
-
+                            moverJugador(deltaTime);
                             double leftCarroActual = Canvas.GetLeft(carro);
                             Canvas.SetLeft(carro, leftCarroActual - (20 * deltaTime.TotalSeconds));
                             if (Canvas.GetLeft(carro) <= -100)
@@ -124,27 +164,43 @@ namespace PracticaMovimiento
             {
                 if (e.Key == Key.Up)
                 {
-                    double topVaqueroActual = Canvas.GetTop(imgVaquero);
-                    Canvas.SetTop(imgVaquero, topVaqueroActual - 15);
+                    direccionJugador = Direccion.Arriba;
                 }
 
                 if (e.Key == Key.Down)
                 {
-                    double downVaqueroActual = Canvas.GetTop(imgVaquero);
-                    Canvas.SetTop(imgVaquero, downVaqueroActual + 15);
+                    direccionJugador = Direccion.Abajo;
                 }
 
                 if (e.Key == Key.Left)
                 {
-                    double leftVaqueroActual = Canvas.GetLeft(imgVaquero);
-                    Canvas.SetLeft(imgVaquero, leftVaqueroActual - 15);
+                    direccionJugador = Direccion.Izquierda;
                 }
 
                 if (e.Key == Key.Right)
                 {
-                    double rightVaqueroActual = Canvas.GetLeft(imgVaquero);
-                    Canvas.SetLeft(imgVaquero, rightVaqueroActual + 15);
+                    direccionJugador = Direccion.Derecha;
                 }
+            }
+        }
+
+        private void miCanvas_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Up && direccionJugador == Direccion.Arriba)
+            {
+                direccionJugador = Direccion.Ninguna;
+            }
+            if (e.Key == Key.Down && direccionJugador == Direccion.Abajo)
+            {
+                direccionJugador = Direccion.Ninguna;
+            }
+            if (e.Key == Key.Left && direccionJugador == Direccion.Izquierda)
+            {
+                direccionJugador = Direccion.Ninguna;
+            }
+            if (e.Key == Key.Right && direccionJugador == Direccion.Derecha)
+            {
+                direccionJugador = Direccion.Ninguna;
             }
         }
     }

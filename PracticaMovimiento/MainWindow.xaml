@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Canvas>
-        <Canvas Visibility="Visible" Name="miCanvas" KeyDown="miCanvas_KeyDown" Focusable="True">
+        <Canvas Visibility="Visible" Name="miCanvas" KeyDown="miCanvas_KeyDown" KeyUp="miCanvas_KeyUp" Focusable="True">
             <Image Name="imgVaquero" Source="q.jpg" Width="90" Height="90" Canvas.Left="343" Canvas.Top="336"></Image>
             <Image Name="carro" Source="carro.jpg" Width="130" Height="80" Canvas.Left="808" Canvas.Top="239"></Image>
             <TextBlock x:Name="lblInterseccionX" Canvas.Left="10" TextWrapping="Wrap" Text="No hay inteseccion en X" Canvas.Top="10"/>
