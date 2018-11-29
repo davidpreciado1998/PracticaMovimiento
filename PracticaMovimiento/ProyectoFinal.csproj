@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -94,12 +95,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="carro.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="q.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="carretera2bl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="enemigobl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="carro-borderless.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bache.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="tronco.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Play.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

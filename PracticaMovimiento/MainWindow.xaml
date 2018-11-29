@@ -5,18 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PracticaMovimiento"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="699" Width="424.121">
     <Canvas>
-        <Canvas Visibility="Visible" Name="miCanvas" KeyDown="miCanvas_KeyDown" KeyUp="miCanvas_KeyUp" Focusable="True">
-            <Image Name="imgVaquero" Source="q.jpg" Width="90" Height="90" Canvas.Left="343" Canvas.Top="336"></Image>
-            <Image Name="carro" Source="carro.jpg" Width="130" Height="80" Canvas.Left="808" Canvas.Top="239"></Image>
-            <TextBlock x:Name="lblInterseccionX" Canvas.Left="10" TextWrapping="Wrap" Text="No hay inteseccion en X" Canvas.Top="10"/>
-            <TextBlock x:Name="lblInterseccionY" Canvas.Left="10" TextWrapping="Wrap" Text="No hay inteseccion en Y" Canvas.Top="31"/>
-            <TextBlock x:Name="lblColision" Canvas.Left="10" TextWrapping="Wrap" Text="No hay colision" Canvas.Top="52"/>
+        <Canvas Visibility="Collapsed" Name="miCanvas" KeyDown="miCanvas_KeyDown" KeyUp="miCanvas_KeyUp" Focusable="True">
+            <Image Name="carretera" Source="carretera2bl.png" Width="720" Height="442" Canvas.Left="-156" Canvas.Top="400"></Image>
+            <Image x:Name="carretera2" Source="carretera2bl.png" Width="720" Height="442" Canvas.Left="-156" Canvas.Top="-27"/>
+            <Image x:Name="carretera3" Source="carretera2bl.png" Width="720" Height="442" Canvas.Left="-156" Canvas.Top="-457"/>
+            <Image x:Name="enemigo1" Source="tronco.png" Width="68" Height="64" Canvas.Left="29" Canvas.Top="-506"/>
+            <Image x:Name="enemigo2" Source="tronco.png" Width="68" Height="64" Canvas.Left="174" Canvas.Top="-776"/>
+            <Image x:Name="enemigo3" Source="tronco.png" Width="68" Height="64" Canvas.Left="308" Canvas.Top="-242"/>
+            <Image Name="carro" Source="carro-borderless.png" Width="52" Height="90" Canvas.Left="180" Canvas.Top="561"></Image>
+
+            <TextBlock x:Name="lblVidas" Canvas.Left="10" TextWrapping="Wrap" Text="Vidas: 4" Canvas.Top="13" Foreground="White"/>
+            <TextBlock x:Name="lblVelocidad" Canvas.Left="290" TextWrapping="Wrap" Text="Velocidad: " Canvas.Top="13" Foreground="White"/>
+
         </Canvas>
-        <Canvas Visibility="Collapsed" Name="canvasGameOver">
-            <TextBlock Text="Game Over" Canvas.Left="201" Canvas.Top="152" FontSize="72" Foreground="#FFE20909"></TextBlock>
+        <Canvas Visibility="Visible" Name="canvasGameOver">
+            <Image Source="Play.png" Height="63" Canvas.Top="247" Width="213" Canvas.Left="102"></Image>
+            <TextBlock Text="Dodge things" Canvas.Left="108" Canvas.Top="41" FontSize="32" Foreground="#FFE20909" Height="50" Width="201"></TextBlock>
+            <Button x:Name="btnPlayAgain" Click="btnPlayAgain_Click" Canvas.Left="152" Canvas.Top="258" Width="112" Height="37" Background="{x:Null}"/>
         </Canvas>
+        
+
     </Canvas>
 
 </Window>
